@@ -1,0 +1,31 @@
+:root {
+  --background: #E7D5AF;
+  --red: #D42A21;
+}
+
+body,
+.App {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--background);
+}
+
+.Controls {
+  max-width: 30vw;
+}
+
+.mainControl {
+  width: 100%;
+}
+.playPauseControls,
+.instrumentControlPanel {
+  max-width: 30vw;
+}
+
+
+.instrumentControl {
+  /* max-width: 15vw; */
+  /* flex-basis: '50%'; */
+}
+
