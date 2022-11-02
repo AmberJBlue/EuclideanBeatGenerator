@@ -1,8 +1,8 @@
 const euclideanRhythm = (onNotes, totalNotes) => {
     if (onNotes >= totalNotes) {
-      let arr = totalNotes > 0 ? new Array(totalNotes) : new Array(1)
+      let arr = parseInt(totalNotes) > 0 ? new Array(parseInt(totalNotes)) : new Array(1)
       return arr.fill(1)
-    }
+    } 
     let groups = [];
     for (let i = 0; i < totalNotes; i++) groups.push([Number(i < onNotes)]);
   

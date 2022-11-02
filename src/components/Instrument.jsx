@@ -28,7 +28,6 @@ class Instrument {
   }
 
   updateNotes(val) {
-    console.log(euclideanRhythm(5, 0))
     if (val > 15 || val < 1) {return}
     this.notes = val
     this.rhythm = euclideanRhythm(this.onsets, this.notes)
@@ -37,7 +36,6 @@ class Instrument {
   updateOnsets(val){
     this.onsets = val
     this.rhythm = euclideanRhythm(this.onsets, this.notes)
-    console.log(this.rhythm)
 
   }
 
