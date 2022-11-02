@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/EuclideanBeatGenerator/static/css/main.d5918416.css",
-    "main.js": "/EuclideanBeatGenerator/static/js/main.7349a891.js",
+    "main.js": "/EuclideanBeatGenerator/static/js/main.1bb05cdc.js",
     "static/js/787.03250b7f.chunk.js": "/EuclideanBeatGenerator/static/js/787.03250b7f.chunk.js",
     "index.html": "/EuclideanBeatGenerator/index.html",
     "main.d5918416.css.map": "/EuclideanBeatGenerator/static/css/main.d5918416.css.map",
-    "main.7349a891.js.map": "/EuclideanBeatGenerator/static/js/main.7349a891.js.map",
+    "main.1bb05cdc.js.map": "/EuclideanBeatGenerator/static/js/main.1bb05cdc.js.map",
     "787.03250b7f.chunk.js.map": "/EuclideanBeatGenerator/static/js/787.03250b7f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d5918416.css",
-    "static/js/main.7349a891.js"
+    "static/js/main.1bb05cdc.js"
   ]
 }
