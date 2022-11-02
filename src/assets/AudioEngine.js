@@ -79,7 +79,6 @@ const AudioEngine = () => {
   const handlePlay = () => {
       if (!settings.started) {
         Tone.start()
-        console.log('started')
         Tone.getDestination().volume.rampTo(settings.volume, 0.001)
         configLoop()
         settings.started = true
@@ -163,7 +162,7 @@ const AudioEngine = () => {
                 <Slider
                   size="small"
                   defaultValue={(
-                    convertRange(settings.volume, [-70, -10], [0, 100]
+                    convertRange(settings.volume, [-30, -10], [0, 100]
                   ))}
                   aria-label={`Volume`}
                   min={0}
@@ -171,8 +170,7 @@ const AudioEngine = () => {
                   max={100}
                   valueLabelDisplay="auto"
                   onChange={(e, val) => {
-                    val = convertRange(val, [0, 100], [-70, -10])
-                    console.log(val)
+                    val = convertRange(val, [0, 100], [-30, -10])
                     settings.volume = val
                   }}
                 />  

@@ -34,7 +34,6 @@ const EuclidCircles = () => {
 			sizeChange = (i === settings.beat && settings.playing) ? 10 + emphasisSpeed: 0;
 			if (sizeChange > 20 || sizeChange < -20) {
 					emphasisSpeed = emphasisSpeed * -1;
-					console.log('fdsfsaadsfds')
 			}
 
 			p5.stroke(circleColors[i])

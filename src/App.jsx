@@ -22,7 +22,7 @@ const App = () => {
   const instruments = loadInstrumentsDefault()
   const settings = {
       started: false,
-      volume: -30,
+      volume: -20,
       tempo: 120,
       playing: false
   }
