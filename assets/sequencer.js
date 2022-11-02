@@ -59,7 +59,6 @@ const makeGrid = (notes) => {
   }
 
   // we now have 6 rows each containing 16 eighth notes
-  console.log(rows)
   return rows;
 };
 
@@ -75,7 +74,6 @@ let started = false;
 const configLoop = () => {
   const repeat = (time) => {
     grid.forEach((row, index) => {
-      console.log
       let synth = synths[index];
       let note = row[beat];
       if (note.isActive) {
