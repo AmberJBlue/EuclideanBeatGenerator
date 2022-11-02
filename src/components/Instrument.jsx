@@ -36,7 +36,6 @@ class Instrument {
   updateOnsets(val){
     this.onsets = val
     this.rhythm = euclideanRhythm(this.onsets, this.notes)
-
   }
 
   getDisplay() {
