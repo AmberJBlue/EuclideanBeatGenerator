@@ -19,11 +19,16 @@ const AudioEngine = () => {
   
   const makeSynths = (count) => {
     const synths = [];
+    let oscillator
     for (let i = 0; i < count; i++) {
+      if(settings.customVoice === true) {
+          oscillator = settings.oscillator
+      } else {
+          oscillator = {
+            type: settings.voice
+          }}
       let synth = new Tone.Synth({
-        oscillator: {
-          type: settings.voice
-        }
+        oscillator: oscillator
       }).toDestination();
       synths.push(synth);
     }
@@ -103,15 +108,38 @@ const AudioEngine = () => {
               <div className='voiceSelect'>
                   <div className={`control-item`}>
                     <Select className="voiceSelect"
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
                       displayEmpty={true}
-                      defaultValue={'sine'}
-                      onChange={(e) => settings.voice = e.target.value}>
-                      <MenuItem value={0}><em>Select Voice</em></MenuItem>
+                      aria-label={`Voice`}
+                      label="Voice"
+                      defaultValue={'default'}
+                      onChange={(e) => {
+                        if(e.target.value === 'default') {
+                          settings.voice = 'sine3'
+                        } else {
+                          settings.voice = e.target.value
+                        }
+                      }}>
+                      <MenuItem value={'default'}><em>Select Voice</em></MenuItem>
                       <MenuItem value={'sine'}>Sine</MenuItem>
                       <MenuItem value={'fatsine8'}>Fat Sine</MenuItem>
-                      <MenuItem value={'square8'}>Square</MenuItem>
+                      <MenuItem value={'square5'}>Square</MenuItem>
+                      <MenuItem value={'sawtooth8'}>Sawtooth</MenuItem>
+                      <MenuItem value={'triangle3'}>Triangle</MenuItem>
+                      <MenuItem value={'pulse'}>Pulse</MenuItem>
+                      {/* <MenuItem value={'custom'}>Custom</MenuItem> */}
+                    </Select>
+                  </div>
+                  <div className={`wave-shaper control-item`}>
+                  <Select className="baseTypeSelect"
+                      displayEmpty={true}
+                      aria-label={`Base Type`}
+                      label="Base Type"
+                      defaultValue={'pwm'}
+                      onChange={(e) => {
+                          console.log('should update oscillator')
+                      }}>
+                      <MenuItem value={'pwm'}><em>Pulse Wave Modulation</em></MenuItem>
+                      <MenuItem value={'pulse'}>Pulse</MenuItem>
                     </Select>
                   </div>
               </div>

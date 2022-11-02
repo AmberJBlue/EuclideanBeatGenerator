@@ -142,3 +142,7 @@ body,
   cursor: pointer!important;
   opacity: 100%;
 }
+
+.wave-shaper {
+  display: none;
+}
