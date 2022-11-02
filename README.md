@@ -6,5 +6,5 @@
 
 
 ### UI + Beat Representation
-![Playback Demo](https://raw.githubusercontent.com/AmberJBlue/EuclideanBeatGenerator/33c9f362ba712c5b18198523903f33e1e819c8fc/euclidean-beat-gen/public/assets/demo.gif?token=GHSAT0AAAAAABZWQBIY6BD7TVBWYE72TYLEY3B3NJQ
+![Playback Demo](https://raw.githubusercontent.com/AmberJBlue/EuclideanBeatGenerator/33c9f362ba712c5b18198523903f33e1e819c8fc/public/assets/demo.gif?token=GHSAT0AAAAAABZWQBIY6BD7TVBWYE72TYLEY3B3NJQ
 )
