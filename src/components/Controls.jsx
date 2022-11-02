@@ -9,7 +9,6 @@ import {
 import 'react-dropdown/style.css'
 import { useRootStore, RootStoreProvider } from '../stores/RootStore'
 import { observer } from "mobx-react";
-import Notes from '../assets/sounds/sounds';
 import AudioEngine from '../assets/AudioEngine';
 
  const ControlPanel = () => {

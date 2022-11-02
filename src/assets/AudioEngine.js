@@ -1,7 +1,8 @@
-// import * as Tone from 'tone'
+import * as Tone from 'tone'
 import { observer } from "mobx-react";
 import { useRootStore, RootStoreProvider } from '../stores/RootStore'
-import * as Tone from "https://cdn.skypack.dev/tone"
+// import * as Tone from "https://cdn.skypack.dev/tone"
+
 
 import {
   MenuItem,

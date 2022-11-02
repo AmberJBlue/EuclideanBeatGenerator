@@ -2,6 +2,7 @@
   "name": "euclidean-beat-gen",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://amberjblue.github.io/EuclideanBeatGenerator",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,8 +25,12 @@
       "react-app/jest"
     ]
   },
-  "plugins": ["@babel/plugin-syntax-decorators"],
+  "plugins": [
+    "@babel/plugin-syntax-decorators"
+  ],
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-decorators": "^7.19.0",
-    "babel-eslint": "^10.1.0"
+    "babel-eslint": "^10.1.0",
+    "gh-pages": "^4.0.0"
   }
 }

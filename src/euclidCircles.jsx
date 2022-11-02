@@ -14,13 +14,6 @@ const EuclidCircles = () => {
 	 "#fed500", "#ef8802","#d71f1f", "#605973",
 	 "#21378d", "#8c8a2e", "#fed500", "#ef8802",
 	 "#d71f1f", "#605973", "#21378d"]
-	let tempoBeat = 0
-	// const circleColors = [
-	// 	"#ADA796","#EDE4D2","#EE8A06","#E9D4BD",
-	// 	"#FDD504","#858389","#21378D","#CEC7BB",
-	// 	"#605A76","#665E5F", "#EDE4D2","#374993",
-	// 	"#E9D4BD","#8B892E","#D61F1E","#EE8A06",
-	// 	"#EDE4D2","#665E5F","21378D","DA504C"]
 
 	let metroSpeed = 0.5
 	let metroSizeChange = 0
