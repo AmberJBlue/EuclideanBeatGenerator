@@ -72,8 +72,8 @@ const AudioEngine = () => {
   }
 
   const convertRange = ( value, inputRange, outputRange ) => { 
-    return (value-inputRange[0])*(outputRange[1]-outputRange[0])/
-              (inputRange[1]-inputRange[0])+outputRange[0];
+    return Math.floor((value-inputRange[0])*(outputRange[1]-outputRange[0])/
+    (inputRange[1]-inputRange[0])+outputRange[0])
 }
 
   const handlePlay = () => {
