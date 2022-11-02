@@ -1,123 +1,83 @@
 import '../App.css'
 import {
-  Card, 
-  Slider, 
-  Typography, 
-  CardActions, 
-  Button, 
-  CardContent,
-  Grid,
-  // Item
+  MenuItem,
+  Switch,
+  Select,
+  TextField,
+  Paper
 } from '@material-ui/core'
-import { Component } from 'react'
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import 'react-dropdown/style.css'
+import { useRootStore, RootStoreProvider } from '../stores/RootStore'
+import { observer } from "mobx-react";
+import Notes from '../assets/sounds/sounds';
+import AudioEngine from '../assets/AudioEngine';
 
-class ControlPanel extends Component {
-  constructor(props) {
-		super(props)
-		this.state = {
-		  numCards: props.numCards
-		}
-
-    // Array(this.state.numCards).keys().map(card => {
-    //   console.log(card)
-    // })
-	}
-  
-  render() {
-    const options = [
-      'one', 'two', 'three'
-    ]
+ const ControlPanel = () => {
+  let { instruments, settings } = useRootStore()
 
     return (
-      <Grid container className='Controls'>
-        <Grid container xs={12} className="playPauseControls">
-          <Card className={'mainControl'}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }}  gutterBottom>
-                Main Controls
-              </Typography>
-              <Typography variant="h5" component="div">
-                hey
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} >
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid container xs={12} className='instrumentControlPanel'>
-          {[...Array(this.state.numCards).keys()].map((key) => (
-            <Grid xs={6}> 
-              <Card className={'instrumentControl'}>
-                <CardContent>
-                  <Typography sx={{ fontSize: 14 }}  gutterBottom>
-                    Instrument {key + 1}
-                  </Typography>
-                  <Dropdown options={options} value={"Select Instrument"}/>
-                  <Slider
-                    size="small"
-                    defaultValue={2}
-                    aria-label={`instrument ${key + 1} number of on notes`}
-                    min={0}
-                    max={15}
-                    valueLabelDisplay="auto"
-                  />
-                  <Typography sx={{ mb: 1.5 }} >
-                    On Notes
-                  </Typography>
-                  <Slider
-                    size="small"
-                    defaultValue={2}
-                    aria-label={`instrument ${key + 1} number of notes`}
-                    min={0}
-                    max={15}
-                    valueLabelDisplay="auto"
-                  />
-                  <Typography sx={{ mb: 1.5 }} >
-                    Total Notes
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
+      <RootStoreProvider instruments={instruments} settings={settings}>
+        <Paper className={"mainControl"} elevation={5}> 
+          <AudioEngine/>
+          <div className='instrumentControlPanel'>
+            {Object.keys(instruments).map((key) => (
+              <div key={`instrument-${key+1}`} className={`control-item control${ key + 1 }`}>
+                <Select className="instrumentSelect"
+                  disabled={!instruments[key].display}
+                  labelId="instrument-select-label"
+                  displayEmpty={true}
+                  value={instruments[key].audio}
+                  label={`Instrument ${key + 1}`}
+                  onChange={(e) => {instruments[key].audio = e.target.value}}>
+                  <MenuItem value=""><em>Instrument</em></MenuItem>
+                  {Object.keys(settings.preset).map((key) => (  
+                    <MenuItem key={key} value={settings.preset[key].filePath}>{settings.preset[key].name}</MenuItem>
+                  ))}
+                </Select>
+                <TextField
+                  id="onsetInput"
+                  disabled={!instruments[key].display}
+                  className='onsetInput'
+                  label="On Notes"
+                  type="number"
+                  InputProps={{ inputProps: { min: 0, max: 15 } }}
+                  value={instruments[key].onsets}
+                  onChange={(e) => instruments[key].updateOnsets(e.target.value)}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="notesInput"
+                  disabled={!instruments[key].display}
+                  className='notesInput'
+                  label="Total Notes"
+                  type="number"
+                  InputProps={{ inputProps: { min: 0, max: 15 } }}
+                  value={instruments[key].notes}
+                  onChange={(e) => {
+                    if(e.target.value !== 0) {
+                      instruments[key].updateNotes(e.target.value)
+                    } else {
+                      console.log('Invalid number of Total Notes')
+                    }
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <Switch 
+                  className='instrumentToggle' 
+                  checked={instruments[key].getDisplay() === true ? true : false}
+                  onChange={() => {instruments[key].toggle()}}
+                />
+              </div>
+            ))}
+          </div>
+        </Paper>
+      </RootStoreProvider>
     )
-    // (
-    //   
-    //     {[...Array(this.state.numCards).keys()].map(card => {
-          // <Card>
-          //   <CardContent>
-          //     <Typography sx={{ fontSize: 14 }}  gutterBottom>
-          //       Word of the Day
-          //     </Typography>
-          //     <Typography variant="h5" component="div">
-          //       {card}
-          //     </Typography>
-          //     <Typography sx={{ mb: 1.5 }} >
-          //       adjective
-          //     </Typography>
-          //     <Typography variant="body2">
-          //       well meaning and kindly.
-          //       <br />
-          //       {'"a benevolent smile"'}
-          //     </Typography>
-          //   </CardContent>
-          //   <CardActions>
-          //     <Button size="small">Learn More</Button>
-          //   </CardActions>
-          // </Card>
-    //     })}
-    //   </div>
-    // )
-  }
-}
 
-export default ControlPanel;
+  }
+
+export default observer(ControlPanel);

@@ -1,36 +1,43 @@
-import { useState } from 'react';
 import './App.css'
 import EuclidCircles from './euclidCircles'
 import ControlPanel from './components/Controls'
+import AudioEngine from './assets/AudioEngine';
+import Instrument from './components/Instrument';
+import { RootStoreProvider } from './stores/RootStore'
 
-function App() {
-    return (
-      <div className="App">
-        <ControlPanel className="controls" numCards={8}/>
-        <div className={"canvas-container"}>
-          <EuclidCircles
-            notes={[15,15,15,15,15,15,15,15]}
-            onsets={[15,15,15,15,15,15,15,15]}
-            size={50}
-            instruments={8}
-          />
-        </div>
-        
-        {/* <Slider
-              className={'slider'}
-              // orientation="vertical"
-              defaultValue={8}
-              step={1}
-              min={3}
-              max={16}  
-              value={value}
-              aria-label="Number of Notes"
-              valueLabelDisplay="auto"
-              style={{ width: 300 }}
-              onChange={changeValue}
-          /> */}
-      </div>
-    )
+function loadInstrumentsDefault() {
+  return {
+    0: new Instrument('C2', 12, 5, true),
+    1: new Instrument('C4', 10, 7, false),
+    2: new Instrument('C4', 13, 5, false),
+    3: new Instrument('E3', 15, 5, true),
+    4: new Instrument('C3', 15, 10, true),
+    5: new Instrument('G3', 15, 9, true),
+    6: new Instrument('A1', 13, 5, true),
+    7: new Instrument('Db1', 15, 5, true),
+  }
+}
+
+const App = () => {
+  const instruments = loadInstrumentsDefault()
+  const settings = {
+      started: false,
+      volume: -20,
+      tempo: 120,
+      playing: false
+  }
+
+  return (
+    <div className="App container">
+        <RootStoreProvider instruments={instruments} settings={settings}>
+          <ControlPanel className="controls"/>
+          <div className={"display"}>
+            <EuclidCircles/>
+          </div>
+          <AudioEngine/>
+        </RootStoreProvider>
+    </div>
+  )
 }
 
 export default App;

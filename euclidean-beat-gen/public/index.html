@@ -11,10 +11,33 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.15/p5.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.15/addons/p5.dom.js'></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"></link>
     <title>Euclidean Beat Generator</title>
+    <script>
+      window.onload = () => {
+        let element = document.getElementById('logo-watermark')
+        setTimeout(() => {unfade(element)}, 3000)
+      }
+
+      function unfade(element) {
+        var op = 0.01;  // initial opacity
+        element.style.display = 'absolute'
+        var timer = setInterval(function () {
+            if (op >= .8){
+                clearInterval(timer);
+            }
+            element.style.cssText = `opacity:${op}!important;cursor: pointer!important;width: 30px!important;height: 30px!important;filter: alpha(opacity=${op * 100})`;
+            op += op * 0.1;
+        }, 50);
+        
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <footer>
+    <a href="https://amber.blue" title="Hello! &#013;Check out my website 🚀" aria-label="Go to creator's home page"><img id="logo-watermark" style="opacity:0.01;width: 30px!important;height: 30px!important;" class="logo-watermark" src="./assets/logo.png" alt=""></a>
+  </footer>
 </html>
