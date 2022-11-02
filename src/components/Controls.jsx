@@ -53,14 +53,10 @@ import AudioEngine from '../assets/AudioEngine';
                   className='notesInput'
                   label="Total Notes"
                   type="number"
-                  InputProps={{ inputProps: { min: 0, max: 15 } }}
+                  // InputProps={{ inputProps: { min: 0, max: 15 } }}
                   value={instruments[key].notes}
                   onChange={(e) => {
-                    if(e.target.value !== 0) {
-                      instruments[key].updateNotes(e.target.value)
-                    } else {
-                      console.log('Invalid number of Total Notes')
-                    }
+                    instruments[key].updateNotes(e.target.value)
                   }}
                   InputLabelProps={{
                     shrink: true,

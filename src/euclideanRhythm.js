@@ -1,18 +1,22 @@
 const euclideanRhythm = (onNotes, totalNotes) => {
-    var groups = [];
-    for (var i = 0; i < totalNotes; i++) groups.push([Number(i < onNotes)]);
+    if (onNotes >= totalNotes) {
+      let arr = totalNotes > 0 ? new Array(totalNotes) : new Array(1)
+      return arr.fill(1)
+    }
+    let groups = [];
+    for (let i = 0; i < totalNotes; i++) groups.push([Number(i < onNotes)]);
   
-    var l;
+    let l;
     while (l = groups.length - 1) {
-      var start = 0, first = groups[0];
+      let start = 0, first = groups[0];
       while (start < l && compareArrays(first, groups[start])) start++;
       if (start === l) break;
   
-      var end = l, last = groups[l];
+      let end = l, last = groups[l];
       while (end > 0 && compareArrays(last, groups[end])) end--;
       if (end === 0) break;
   
-      var count = Math.min(start, l - end);
+      let count = Math.min(start, l - end);
       groups = groups
         .slice(0, count)
         .map(function (group, i) { return group.concat(groups[l - i]); })
