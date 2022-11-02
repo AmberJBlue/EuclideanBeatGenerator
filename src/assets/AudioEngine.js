@@ -102,6 +102,8 @@ const AudioEngine = () => {
                   variant="contained" 
                   className="playButton"
                   id="playButton"
+                  aria-label={settings.playing ? 'Stop Playback' : 'Start Playback'}
+                  title={settings.playing ? 'Stop Playback' : 'Start Playback'}
                   onClick={() => handlePlay()}>
                   Start
               </Button>
@@ -109,9 +111,10 @@ const AudioEngine = () => {
                   <div className={`control-item`}>
                     <Select className="voiceSelect"
                       displayEmpty={true}
-                      aria-label={`Voice`}
                       label="Voice"
                       defaultValue={'default'}
+                      aria-label={`Select instrument voice`}
+                      title={`Select instrument voice`}
                       onChange={(e) => {
                         if(e.target.value === 'default') {
                           settings.voice = 'sine3'
@@ -120,12 +123,12 @@ const AudioEngine = () => {
                         }
                       }}>
                       <MenuItem value={'default'}><em>Select Voice</em></MenuItem>
-                      <MenuItem value={'sine'}>Sine</MenuItem>
-                      <MenuItem value={'fatsine8'}>Fat Sine</MenuItem>
-                      <MenuItem value={'square5'}>Square</MenuItem>
-                      <MenuItem value={'sawtooth8'}>Sawtooth</MenuItem>
-                      <MenuItem value={'triangle3'}>Triangle</MenuItem>
-                      <MenuItem value={'pulse'}>Pulse</MenuItem>
+                      <MenuItem aria-label={`Sine wave`} value={'sine'}>Sine</MenuItem>
+                      <MenuItem aria-label={`Fat sine wave`} value={'fatsine8'}>Fat Sine</MenuItem>
+                      <MenuItem aria-label={`Square wave`} value={'square5'}>Square</MenuItem>
+                      <MenuItem aria-label={`Sawtooth wave`} value={'sawtooth8'}>Sawtooth</MenuItem>
+                      <MenuItem aria-label={`Triangle wave`} value={'triangle3'}>Triangle</MenuItem>
+                      <MenuItem aria-label={`Pulse`} value={'pulse'}>Pulse</MenuItem>
                       {/* <MenuItem value={'custom'}>Custom</MenuItem> */}
                     </Select>
                   </div>

@@ -25,6 +25,8 @@ import AudioEngine from '../assets/AudioEngine';
                   disabled={!instruments[key].display}
                   labelId="instrument-select-label"
                   displayEmpty={true}
+                  aria-label={`Select note for track number ${parseInt(key) + 1}`}
+                  title={`Select note for track number ${parseInt(key) + 1}`}
                   value={instruments[key].audio}
                   label={`Instrument ${key + 1}`}
                   onChange={(e) => {instruments[key].audio = e.target.value}}>
@@ -34,25 +36,13 @@ import AudioEngine from '../assets/AudioEngine';
                   ))}
                 </Select>
                 <TextField
-                  id="onsetInput"
-                  disabled={!instruments[key].display}
-                  className='onsetInput'
-                  label="On Notes"
-                  type="number"
-                  InputProps={{ inputProps: { min: 0, max: 15 } }}
-                  value={instruments[key].onsets}
-                  onChange={(e) => instruments[key].updateOnsets(e.target.value)}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <TextField
                   id="notesInput"
                   disabled={!instruments[key].display}
                   className='notesInput'
                   label="Total Notes"
                   type="number"
-                  // InputProps={{ inputProps: { min: 0, max: 15 } }}
+                  aria-label={`Select total notes for track number ${parseInt(key) + 1}`}
+                  title={`Select total notes for track number ${parseInt(key) + 1}`}
                   value={instruments[key].notes}
                   onChange={(e) => {
                     instruments[key].updateNotes(e.target.value)
@@ -61,8 +51,25 @@ import AudioEngine from '../assets/AudioEngine';
                     shrink: true,
                   }}
                 />
+                <TextField
+                  id="onsetInput"
+                  disabled={!instruments[key].display}
+                  className='onsetInput'
+                  label="On Notes"
+                  type="number"
+                  aria-label={`Select on notes for track number ${parseInt(key) + 1}`}
+                  title={`Select on notes for track number ${parseInt(key) + 1}`}
+                  InputProps={{ inputProps: { min: 0, max: 15 } }}
+                  value={instruments[key].onsets}
+                  onChange={(e) => instruments[key].updateOnsets(e.target.value)}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
                 <Switch 
                   className='instrumentToggle' 
+                  aria-label={`${instruments[key].getDisplay() === true ? 'Mute' : 'Unmute'} track number ${parseInt(key) + 1}`}
+                  title={`${instruments[key].getDisplay() === true ? 'Mute' : 'Unmute'} track number ${parseInt(key) + 1}`}
                   checked={instruments[key].getDisplay() === true ? true : false}
                   onChange={() => {instruments[key].toggle()}}
                 />
