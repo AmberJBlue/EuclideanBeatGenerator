@@ -32,8 +32,6 @@ const AudioEngine = () => {
   };
 
   const synths = makeSynths(Object.keys(instruments).length)
-  // let grid = makeGrid()
-
   const configLoop = () => {
     let duration = totalNotes+"n"
     let maxNotes = []
@@ -67,7 +65,11 @@ const AudioEngine = () => {
     Tone.Transport.scheduleRepeat(repeat, duration);
   }
 
-  // document.addEventListener('click', "playButton",);
+  const convertRange = ( value, inputRange, outputRange ) => { 
+    return (value-inputRange[0])*(outputRange[1]-outputRange[0])/
+              (inputRange[1]-inputRange[0])+outputRange[0];
+}
+
   const handlePlay = () => {
       if (!settings.started) {
         Tone.start()
@@ -86,7 +88,6 @@ const AudioEngine = () => {
         settings.playing = true
         document.getElementById('playButton').innerHTML = "Stop"
       }
-      // settings.playing = !settings.playing
   }
 
   return (
@@ -132,13 +133,19 @@ const AudioEngine = () => {
               <div className='volumeControl'>
                 <Slider
                   size="small"
-                  defaultValue={settings.volume}
+                  defaultValue={(
+                    convertRange(settings.volume, [-70, -10], [0, 100]
+                  ))}
                   aria-label={`Volume`}
-                  min={-70}
+                  min={0}
                   label="Volume"
-                  onChange={(e, val) => {settings.volume = val}}
-                  max={-10}
+                  max={100}
                   valueLabelDisplay="auto"
+                  onChange={(e, val) => {
+                    val = convertRange(val, [0, 100], [-70, -10])
+                    console.log(val)
+                    settings.volume = val
+                  }}
                 />  
                 <InputLabel sx={{ mb: 1.5, marginTop: "20px"}} >
                       Volume
